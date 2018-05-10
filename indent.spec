@@ -6,7 +6,7 @@
 #
 Name     : indent
 Version  : 2.2.10
-Release  : 3
+Release  : 4
 URL      : http://mirrors.kernel.org/gnu/indent/indent-2.2.10.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/indent/indent-2.2.10.tar.gz
 Source99 : http://mirrors.kernel.org/gnu/indent/indent-2.2.10.tar.gz.sig
