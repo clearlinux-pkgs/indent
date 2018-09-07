@@ -1,6 +1,3 @@
-Configure miss: AIX
-Configure miss: strerror in -lcposix
 Configure miss: sys/utime.h usability
 Configure miss: sys/utime.h presence
-Configure miss: sys/utime.h
 Configure miss: if struct utimbuf needs  -posix
