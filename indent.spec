@@ -6,10 +6,10 @@
 #
 Name     : indent
 Version  : 2.2.12
-Release  : 7
+Release  : 8
 URL      : http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz
-Source1 : http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz.sig
+Source1  : http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
@@ -79,14 +79,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573772727
+export SOURCE_DATE_EPOCH=1605131526
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -96,10 +96,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1573772727
+export SOURCE_DATE_EPOCH=1605131526
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/indent
 cp %{_builddir}/indent-2.2.12/COPYING %{buildroot}/usr/share/package-licenses/indent/8624bcdae55baeef00cd11d5dfcfa60f68710a02
