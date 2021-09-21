@@ -1,3 +1,1 @@
-Configure miss: sys/utime.h usability
-Configure miss: sys/utime.h presence
-Configure miss: if struct utimbuf needs  -posix
+Configure miss: gcc options needed to detect all undeclared functions

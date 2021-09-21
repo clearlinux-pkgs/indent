@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Andrej Shadura <andrew@shadura.me>
+Date: Sun, 18 Apr 2021 19:32:46 +0200
+Subject: [PATCH] Make sure (doc|dvi|ps|pdf|html)dir options to configure are
+ actually used
+
+---
+ doc/Makefile.am | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/doc/Makefile.am b/doc/Makefile.am
+index 7ae1530..f7a8ff4 100644
+--- a/doc/Makefile.am
++++ b/doc/Makefile.am
+@@ -2,11 +2,11 @@
+ 
+ info_TEXINFOS = indent.texi
+ 
+-docdir = $(prefix)/doc/@PACKAGE@
+-dvidir = $(docdir)
+-psdir = $(docdir)
+-pdfdir = $(docdir)
+-htmldir = $(docdir)
++docdir = @docdir@
++dvidir = @dvidir@
++psdir = @psdir@
++pdfdir = @pdfdir@
++htmldir = @htmldir@
+ HTMLSTYLE = monolithic
+ 
+ AUTOMAKE_OPTIONS = 1.2 gnits

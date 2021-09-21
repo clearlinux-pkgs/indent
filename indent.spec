@@ -6,7 +6,7 @@
 #
 Name     : indent
 Version  : 2.2.12
-Release  : 8
+Release  : 9
 URL      : http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz
 Source1  : http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz.sig
@@ -18,8 +18,17 @@ Requires: indent-info = %{version}-%{release}
 Requires: indent-license = %{version}-%{release}
 Requires: indent-locales = %{version}-%{release}
 Requires: indent-man = %{version}-%{release}
+BuildRequires : autoconf-archive-dev
+BuildRequires : automake
+BuildRequires : automake-dev
 BuildRequires : bison
+BuildRequires : gettext-bin
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : m4
+BuildRequires : pkg-config-dev
 BuildRequires : texinfo
+Patch1: 0001-Make-sure-doc-dvi-ps-pdf-html-dir-options-to-configu.patch
 
 %description
 ============================
@@ -36,6 +45,16 @@ Requires: indent-license = %{version}-%{release}
 
 %description bin
 bin components for the indent package.
+
+
+%package doc
+Summary: doc components for the indent package.
+Group: Documentation
+Requires: indent-man = %{version}-%{release}
+Requires: indent-info = %{version}-%{release}
+
+%description doc
+doc components for the indent package.
 
 
 %package info
@@ -73,22 +92,23 @@ man components for the indent package.
 %prep
 %setup -q -n indent-2.2.12
 cd %{_builddir}/indent-2.2.12
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605131526
+export SOURCE_DATE_EPOCH=1632204003
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%configure --disable-static
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+%reconfigure --disable-static
 make  %{?_smp_mflags}
 
 %check
@@ -99,7 +119,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1605131526
+export SOURCE_DATE_EPOCH=1632204003
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/indent
 cp %{_builddir}/indent-2.2.12/COPYING %{buildroot}/usr/share/package-licenses/indent/8624bcdae55baeef00cd11d5dfcfa60f68710a02
@@ -108,11 +128,14 @@ cp %{_builddir}/indent-2.2.12/COPYING %{buildroot}/usr/share/package-licenses/in
 
 %files
 %defattr(-,root,root,-)
-/usr/doc/indent/indent.html
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/indent
+
+%files doc
+%defattr(0644,root,root,0755)
+%doc /usr/share/doc/indent/*
 
 %files info
 %defattr(0644,root,root,0755)
