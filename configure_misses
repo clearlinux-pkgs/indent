@@ -1,1 +1,1 @@
-Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: if struct utimbuf needs  -posix

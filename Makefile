@@ -1,5 +1,5 @@
 PKG_NAME := indent
-URL = http://mirrors.kernel.org/gnu/indent/indent-2.2.12.tar.gz
+URL = https://mirrors.kernel.org/gnu/indent/indent-2.2.13.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
